@@ -5,4 +5,5 @@ Accounts.onCreateUser (options, user) ->
     to: Meteor.settings.private.adminEmail
     subject: "New Oscar User: #{user.emails[0].address}"
     text: EJSON.stringify(user)
+  logUserAction(user, "Created an account.")
   return user
