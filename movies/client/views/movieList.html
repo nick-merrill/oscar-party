@@ -1,0 +1,11 @@
+<template name='movieList'>
+  <div>
+    {{#each movies}}
+      {{> moviePanel}}
+    {{/each}}
+  </div>
+
+  {{#if currentUser.isAdmin}}
+    {{> addMovie}}
+  {{/if}}
+</template>

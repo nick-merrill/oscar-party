@@ -1,0 +1,20 @@
+<template name="events">
+  <div class='text-center'>
+    <table align='center'>
+      <tr>
+        <th>Date</th>
+        <th>User</th>
+        <th>Message</th>
+      </tr>
+      {{#each userActions}}
+      <tr>
+        <td title="{{$momentFullTimeStamp this.date}}">
+          {{$momentCalendar this.date}}
+        </td>
+        <td title="{{this._user}}">{{this.user.profile.name}}</td>
+        <td>{{this.message}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+</template>

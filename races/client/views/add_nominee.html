@@ -1,0 +1,20 @@
+<template name="addNominee">
+  <div class="text-center">
+    <form>
+      <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12">
+        <input required id="name" type="text" autocomplete="off" class="form-control" placeholder="New Nominee Name">
+        <label>
+          <select id='movie_id' class='form-control' required>
+            <option value=''>--- Nominated Movie ---</option>
+          {{#each movies}}
+            <option value="{{this._id}}">{{this.name}}</option>
+          {{/each}}
+          </select>
+        </label>
+        <div>
+          <button class="btn btn-primary"><i class="fa fa-plus-circle"></i> Add Nominee</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>

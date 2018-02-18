@@ -1,0 +1,16 @@
+<template name='youtubeVideo'>
+  {{#if this}}
+    <div class='text-center youtube-video receives-click' data-youtube-id="{{this}}"
+         style='position: relative;'
+         onclick="loadYoutube()">
+      <div style="width: 100%; height: 250px;
+          background-image: url('https://img.youtube.com/vi/{{this}}/sddefault.jpg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+      "></div>
+      <i class='fa fa-youtube-play fa-5x'
+         style='position: absolute; top: 90px; left: 0; width: 100%; color: #fff;'></i>
+    </div>
+  {{/if}}
+</template>

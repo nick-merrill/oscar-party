@@ -1,0 +1,16 @@
+<template name="dashboard">
+  <div class="col-sm-6 text-center">
+    <h3>Leading Ballots</h3>
+    <!--<div class="margin">-->
+      <!--<a class="btn btn-default btn-lg" href="/ballots">-->
+        <!--<i class="fa fa-list-ul"></i> Ballots-->
+      <!--</a>-->
+    <!--</div>-->
+    {{> ballotList mini=true shouldHideUnpaid=true}}
+  </div>
+
+  <div class="col-sm-6 text-center">
+    <h3>Recent Announcements</h3>
+    {{> races mini=true}}
+  </div>
+</template>

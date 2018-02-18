@@ -1,0 +1,49 @@
+<template name="profile">
+
+  <form style="text-align: center;">
+    <div>
+      <label class="{{nameClass}}">
+        Name
+        <input required autocomplete="off" id="name" autofocus type="text" value="{{ currentUser.profile.name }}">
+      </label>
+      <p class="{{nameClass}}">
+        {{nameMessage}}
+      </p>
+    </div>
+
+    <div>
+      <label>
+        Email
+        <input required id="email" type="email" value="{{ userEmail user=currentUser }}">
+      </label>
+    </div>
+
+    <div style="margin-top: 1em;">
+      <label>
+        <input type="checkbox" id="desire-password-change">
+        Also change password?
+      </label>
+    </div>
+    <div class="change-password" style="display: none;">
+      <div>
+        <label>
+          Old Password
+          <input id="old-password" type="password">
+        </label>
+      </div>
+      <div>
+        <label>
+          New Password
+          <input id="new-password" type="password">
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" style="margin-top: 1em;" class="btn btn-primary btn-lg">Save Changes</button>
+  </form>
+
+  <div class="text-center margin">
+    <a id="logout" class="btn btn-sm btn-default">Log Out</a>
+  </div>
+
+</template>

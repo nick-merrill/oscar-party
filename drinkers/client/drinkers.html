@@ -1,0 +1,54 @@
+<template name="drinkers">
+  {{#let race=latestRace winningContender=latestWinningContender}}
+  {{#if race}}
+  <div class='row col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 text-center'>
+    <div class='panel panel-primary {{#if $occurredWithinSeconds race.declaredWinnerAt 20}}animated animated-5x flash{{/if}}'>
+      <div class='panel-heading'>
+        <div style='font-size: 1.2em;'>{{race.name}}</div>
+        <div class='text-bold' style='font-size: 1.5em;'>
+          <i class='fa fa-trophy'></i>
+          <span style='margin: 5px;'>{{winningContender.name}}</span>
+          <i class='fa fa-trophy'></i>
+        </div>
+        <div style='font-style: italic;'>{{winningContender.movie.name}}</div>
+      </div>
+      <div class='panel-footer'>
+        {{>raceStatus race=race}}
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-xs-6'>
+      <h2 class='text-success'>Pass</h2>
+      {{>miniBallotList ballots=latestWinnerBallots class='success' icon='smile-o' animation='flipInX'}}
+    </div>
+    <div class='col-xs-6'>
+      <h2 class='text-danger'>Drink!</h2>
+      {{>miniBallotList ballots=latestLoserBallots class='danger' icon='flask' animation='flipInX'}}
+    </div>
+  </div>
+  {{else}}
+    <h1>&mdash; No announcements have been made yet. &mdash;</h1>
+  {{/if}}
+  {{/let}}
+</template>
+
+<template name="miniBallotList">
+  <div class='row'>
+    {{#each ballots}}
+      <div class='col-xs-12 col-sm-6 col-md-4 animated {{../animation}}'
+           style='padding: 10px; font-size: 1.3em;'>
+        <div class='panel panel-{{../class}}'>
+          <div class='panel-heading'>
+            {{this.owner.profile.name}}
+            {{this.name}}
+            <div class='pull-right'>
+              <i class='fa fa-{{../icon}}'></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</template>

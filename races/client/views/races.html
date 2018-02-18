@@ -1,0 +1,80 @@
+<template name="races">
+  {{#unless mini}}
+    <h2>Official Announcements</h2>
+  {{/unless}}
+
+  {{#each races}}
+    <div class='{{#if $occurredWithinSeconds this.declaredWinnerAt 20}}animated flipInX{{/if}}'>
+    {{>raceTile}}
+    </div>
+  {{/each}}
+
+  {{#unless mini}}
+    {{#if currentUser.isAdmin}}
+      <h3 class="text-center">Add new category?</h3>
+      {{> addRace}}
+    {{/if}}
+  {{/unless}}
+</template>
+
+<template name="raceStatus">
+  <div class="text-center">
+    {{#if race.declaredWinnerAt}}
+      <span class="text-muted">Declared {{$momentTime race.declaredWinnerAt}}</span>
+    {{/if}}
+    {{#if race.isVotingClosed}}
+      <div class="text-muted"><i class="fa fa-lock"></i> Voting Locked</div>
+    {{/if}}
+    {{#unless race.isVotingClosed}}
+      <div class="text-muted"><i class="fa fa-unlock"></i> Voting Open</div>
+    {{/unless}}
+  </div>
+</template>
+
+<template name='raceTile'>
+  <div class="panel panel-default">
+    <a href="/races/{{_id}}" class="panel-heading text-left" style="font-size: 1.3em;">
+      {{#if this.isNextRace}}
+        <span class='label label-success'>Up Next!</span>
+      {{/if}}
+      {{this.name}}
+      <span class="pull-right">
+          <i class="fa fa-chevron-circle-right"></i>
+        </span>
+    </a>
+    <div class="panel-body">
+      <ul>
+        {{#each getContenders this._id}}
+          {{>contender race=.. contender=this}}
+        {{else}}
+          <div class="text-center text-bold">
+            &mdash; No nominations yet &mdash;
+          </div>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="panel-footer" style='position:relative;'>
+      {{> raceStatus race=this}}
+
+      {{#if shouldDisplayOrdering ../mini}}
+        <div style="width: 130px;">
+          <div class="input-group input-group-sm">
+            <label for="race-order-{{this._id}}" class="input-group-addon">Order</label>
+            <input id="race-order-{{this._id}}" type="number" value="{{this.order}}" class="form-control race-order">
+          </div>
+        </div>
+      {{/if}}
+
+      {{#if currentUser.isAdmin}}
+        {{#unless this.isNextRace}}
+          <div style='position: absolute; bottom: 0; right: 0; margin: 5px;'>
+            <button class='up-next-button btn btn-xs btn-success'
+                    data-race-id='{{this._id}}'>
+              Up Next
+            </button>
+          </div>
+        {{/unless}}
+      {{/if}}
+    </div>
+  </div>
+</template>

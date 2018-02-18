@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+}
+
+table th {
+    font-weight: bold;
+}
+
+table th, table td {
+    text-align: center;
+    border: 1px solid #888;
+    padding: 5px;
+}
+
+.receives-click {
+    cursor: pointer;
+}
+
+.receives-click.youtube-video:hover i.fa-youtube-play {
+    color: red !important;
+}
+
+.receives-click.youtube-video:hover img {
+    opacity: 0.8;
+}
+
+.animated.animated-5x {
+    animation-iteration-count: 5;
+    -webkit-animation-iteration-count: 5;
+    -moz-animation-iteration-count: 5;
+}

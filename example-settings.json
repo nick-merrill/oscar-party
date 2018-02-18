@@ -1,0 +1,23 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://...",
+      "ROOT_URL": "https://...",
+      "MAIL_URL": "smtp://..."
+    }
+  },
+  "private":{
+    "accessCode": "ALL CAPS CODE",
+    "adminEmail": "...@...",
+    "senderEmail": "...@...",
+    "initialAdminCredentials": {
+      "email": "...@...",
+      "password": "***"
+    }
+  },
+  "public": {
+    "partyName": "Oscar Party",
+    "hostPhoneNumber": "(303) ***-****",
+    "hostName": "Mr. and Mrs. Oscar"
+  }
+}

@@ -1,0 +1,14 @@
+<head>
+  <meta name="viewport" content="device-width, initial-scale=1">
+  <script type="text/javascript">
+    function loadYoutube() {
+      var $target = $(this.event.target);
+      var $parent = $target.closest('.youtube-video');
+      console.log($parent);
+      $parent.html("<iframe type='text/html' width='100%' height='250' " +
+          "allowfullscreen src='https://www.youtube.com/embed/"+$parent.data('youtube-id')+"?rel=0&showinfo=0&autoplay=1' " +
+          "frameborder='0'>" +
+          "</iframe>")
+    }
+  </script>
+</head>

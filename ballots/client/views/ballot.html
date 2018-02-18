@@ -1,0 +1,121 @@
+<template name="ballot">
+
+  <div class="margin">
+    <a class="btn btn-default" href="/ballots"><i
+        class="fa fa-chevron-left"></i> All ballots</a>
+    {{#if currentUser.isAdmin}}
+      <div class="pull-right" id="change-payment-status">
+        {{#unless ballot.isPaid}}
+          <a class="btn btn-success">
+            <i class="fa fa-usd"></i> Mark Paid
+          </a>
+        {{/unless}}
+        {{#if ballot.isPaid}}
+          <a class="btn btn-danger">
+            <i class="fa fa-usd" style="text-decoration: line-through;"></i>
+            Mark <strong>Unpaid</strong>
+          </a>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+
+  <h2>{{ ballot.owner.profile.name }} {{ ballot.name }}</h2>
+  <h3>
+    {{ballotStatus ballot}}
+  </h3>
+  <h4 class="text-center text-primary">
+    <span class="text-bold" style="font-size: 1.3em;">{{ballotNumberCorrectVotes
+        ballot}}</span>
+    out of {{totalDeclaredRaceCount}} declared winners
+  </h4>
+
+  {{>ballotReminders ballot=ballot}}
+
+  <div class="">
+    {{#each races}}
+      <div class="row col-sm-12">
+        <div class="panel {{panelClasses ../ballot this}}">
+          <div class="panel-heading">
+            {{this.name}}
+            <span class="pull-right"><i
+                class="{{panelIconClasses ../ballot this}}"
+                style="font-size: 1.6em;"></i></span>
+          </div>
+          <div class="panel-body">
+            {{#if userCanViewBallotRace ../ballot this}}
+              {{#each getContenders this._id}}
+                {{>contender race=.. contender=this ballot=../../ballot}}
+              {{/each}}
+            {{else}}
+              <div class="text-center">
+                &mdash; {{../ballot.owner.profile.name}}'s vote is hidden
+                &mdash;
+                {{#if $not this.isVotingClosed}}
+                  <br />
+                  <span
+                      class="text-muted">(Vote will be revealed when {{this.name}}
+                    is closed.)</span>
+                {{/if}}
+              </div>
+            {{/if}}
+          </div>
+          <div class="panel-footer">
+            {{> raceStatus race=this}}
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  {{>ballotReminders ballot=ballot}}
+
+</template>
+
+<template name="ballotReminders">
+  {{#if userCanVoteOnBallot ballot}}
+    <p class="text-center text-bold" style="margin: 2em; font-size: 1.3em;">
+      Note: Your ballot votes are saved automatically.</p>
+  {{/if}}
+</template>
+
+<template name="contender">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="contender
+      {{#if ballotVoteEquals ballot race contender}}voted text-bold{{/if}}
+      {{#if contender.isWinner}}winner{{/if}}">
+      <div>
+        {{#if contender.isWinner}}<i class="fa fa-trophy"></i>{{/if}}
+        <div>
+          {{contender.name}}
+          {{#if ballot}}
+            {{#if ballotVoteEquals ballot race contender}}
+              <i class="fa fa-hand-o-left vote-indicator"></i>{{/if}}
+          {{/if}}
+        </div>
+        <div>
+          {{> moviePartial movie=contender.movie}}
+        </div>
+      </div>
+      <div>
+        {{> youtubeVideo contender.movie.youtubeID}}
+      </div>
+      {{#if ballot}}  <!-- Only show vote buttons if we have a ballot. -->
+      {{#unless ballotVoteEquals ballot race contender}}
+      {{#if userCanSetVoteOnRace ballot race}}
+        <div class='text-center'>
+          <button class='btn btn-sm btn-info contender-vote-button'
+                  style="margin: 5px;">
+            {{#if ballotVote ballot race}}
+              Change Vote
+            {{else}}
+              Cast Vote
+            {{/if}}
+          </button>
+        </div>
+      {{/if}}
+      {{/unless}}
+      {{/if}}
+    </div>
+  </div>
+</template>

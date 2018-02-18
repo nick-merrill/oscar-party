@@ -1,0 +1,59 @@
+<template name="ballotList">
+  {{#unless mini}}
+    <div class="text-center margin">
+      <button id="new-ballot" class="btn btn-success btn-lg btn-extra-lg">
+        <i class="fa fa-plus-circle"></i> Start New Ballot
+      </button>
+    </div>
+
+    <div class="text-center margin">
+      <div class="btn-group">
+        <button id="select-all" class="btn btn-default {{#unless $.Session.get 'ballotFilterKey'}}active{{/unless}}">
+          All Ballots
+        </button>
+        <button id="select-mine" class="btn btn-default {{#if $.Session.equals 'ballotFilterKey' 'mine'}}active{{/if}}">
+          My Ballots
+        </button>
+      </div>
+    </div>
+  {{/unless}}
+
+  {{#each allBallots}}
+    {{#if shouldDisplayBallot this ../shouldHideUnpaid}}
+      <a href="/ballots/{{_id}}">
+        <div class="panel panel-default {{#if shouldDrawAttentionToBallot this}}animated animated-5x flash{{/if}}">
+          <div class="panel-heading text-center"
+               style="font-size: 1.3em;">
+            <div style="position: relative; top: -2px;"
+                 class="pull-left border-circle">
+              {{#if $not this.isPaid}}
+                <i class="fa fa-usd text-danger"></i>
+              {{else}}
+                {{#if $eq this.rank 1}}
+                  <i class="fa fa-trophy text-primary"></i>
+                {{else}}
+                  {{this.rank}}
+                {{/if}}
+              {{/if}}
+            </div>
+            <span class="{{#if $eq this.rank 1}}text-bold text-primary{{/if}}">
+              {{this.owner.profile.name}}
+              {{this.name}}
+            </span>
+            <span class="pull-right">
+              {{#if $eq this.changeOfCorrectCountSinceLastWinner 1}}
+                <span class='text-success'
+                      title="{{this.owner.profile.name}} just gained a point!">
+                  {{ballotNumberCorrectVotes this}}
+                  <i class="fa fa-level-up"></i>
+                </span>
+              {{else}}
+                {{ballotNumberCorrectVotes this}}
+              {{/if}}
+            </span>
+          </div>
+        </div>
+      </a>
+    {{/if}}
+  {{/each}}
+</template>

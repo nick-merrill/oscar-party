@@ -1,0 +1,97 @@
+
+<template name="partyName">
+  {{publicSettings.partyName}}
+</template>
+
+<template name="mainLayout">
+
+  <h1>{{> partyName}}</h1>
+
+  {{> topNav}}
+
+  {{#if $.Session.equals 'helpIsOpen' true}}
+    {{> help}}
+  {{/if}}
+
+  {{#unless $.Session.equals 'helpIsOpen' true}}
+    {{> yield}}
+  {{/unless}}
+
+  <div id='bottom-filler' class='clearfix' style="padding-bottom: 100px; width: 100%;"></div>
+
+  {{#if currentUser }}
+    <div class="text-center" style="position: fixed; bottom: 0; margin: 0 auto; width: 100%; padding: 10px; background: #000;">
+      <p>
+        You are logged in. Don't let someone steal your ballot choices!
+      </p>
+      <button class="btn btn-default log-out">Log Out</button>
+    </div>
+  {{/if}}
+
+</template>
+
+<template name="unapproved">
+  <h2 style="color: #d58900;">
+    Enter access code...
+  </h2>
+  <div class="row">
+    <div style="width: 200px; margin: 0 auto;">
+      <form>
+        <div class="input-group input-group-lg">
+          <input id="access-code" type="text" class="form-control text-center text-bold"
+                 style="font-family: consolas, menlo, monaco, monospace;"
+                 autofocus autocomplete="off" required>
+          <div class="input-group-btn">
+            <button type="submit" id="submit" class="btn btn-info">Enter</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <p class="text-center padding">Feel free to contact {{publicSettings.hostName}} if you don't have an access code.</p>
+</template>
+
+<template name="notFound">
+  <h2>That page could not be found</h2>
+</template>
+
+<template name="accessDenied">
+  <h2>Access Denied</h2>
+</template>
+
+<template name="help">
+  <h2>Support</h2>
+  <div class="text-center">
+    <p style="font-size: 1.3em;">
+      Feel free to call or text {{publicSettings.hostName}} at
+      {{publicSettings.hostPhoneNumber}}
+      for any help!
+    </p>
+    <button class="margin btn btn-info close-help"><i class="fa fa-chevron-circle-left"></i> Go Back</button>
+  </div>
+</template>
+
+<template name="topNav">
+  {{#if currentUser}}
+    <div class="top-nav-left">
+        {{#if currentUser.profile.name}}
+          {{#unless $eq currentPath '/nav'}}
+            <a class="btn btn-default btn-sm" href="/nav"><i class="fa fa-chevron-up"></i> Menu</a>
+          {{/unless}}
+        {{/if}}
+    </div>
+  {{/if}}
+  <div class="top-nav-right">
+    {{#if currentUser}}
+      <a title="Profile" href="/accounts/profile"><i class="fa fa-user"></i></a>
+        {{#if currentUser.isAdmin}}
+          <a title='Settings' href="/settings"><i class="fa fa-cog"></i></a>
+        {{/if}}
+    {{/if}}
+    <a title="Source Code" target="_blank"
+       href="https://github.com/cloudrave/oscar-party">
+      <i class='fa fa-github'></i>
+    </a>
+    <button class="btn btn-sm btn-default open-help">Help?</button>
+  </div>
+</template>

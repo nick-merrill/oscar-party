@@ -1,0 +1,17 @@
+<template name='moviePanel'>
+  <div class="col-sm-6 col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{this.name}}
+      </div>
+      {{>youtubeVideo this.youtubeID}}
+    </div>
+  </div>
+</template>
+
+<template name='moviePartial'>
+  <div style='font-style: italic;'>{{movie.name}}</div>
+  {{#if showTrailer}}
+    {{>youtubeVideo movie.youtubeID}}
+  {{/if}}
+</template>

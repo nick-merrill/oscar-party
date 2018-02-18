@@ -1,0 +1,9 @@
+{
+  "engines": {
+    "node": "0.10.40"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.39",
+    "bcrypt": "^1.0.3"
+  }
+}
