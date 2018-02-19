@@ -25,6 +25,7 @@
   "public": {
     "partyName": "Oscar Party",
     "hostPhoneNumber": "(303) ***-****",
-    "hostName": "Mr. and Mrs. Oscar"
+    "hostName": "Mr. and Mrs. Oscar",
+    "privacyPolicyURL": "http://***"
   }
 }

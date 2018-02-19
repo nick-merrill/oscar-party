@@ -19,15 +19,21 @@
 
   <div id='bottom-filler' class='clearfix' style="padding-bottom: 100px; width: 100%;"></div>
 
-  {{#if currentUser }}
-    <div class="text-center" style="position: fixed; bottom: 0; margin: 0 auto; width: 100%; padding: 10px; background: #000;">
+  <div class="text-center" style="position: fixed; bottom: 0; margin: 0 auto; width: 100%; padding: 10px; background: #000;">
+    {{#if currentUser }}
       <p>
         You are logged in. Don't let someone steal your ballot choices!
+        {{>privacyPolicy}}
       </p>
       <button class="btn btn-default log-out">Log Out</button>
-    </div>
-  {{/if}}
+    {{else}}
+      {{>privacyPolicy}}
+    {{/if}}
+  </div>
+</template>
 
+<template name="privacyPolicy">
+  <a href="{{publicSettings.privacyPolicyURL}}" target="_blank">Privacy Policy</a>
 </template>
 
 <template name="unapproved">
