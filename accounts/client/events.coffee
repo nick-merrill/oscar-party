@@ -54,6 +54,14 @@ Template.profile.events
       Router.go '/'
 
 Template.login.events
+  'click button#fb-login': (e) ->
+    Meteor.loginWithFacebook
+      requestPermissions: ['public_profile', 'email']
+    , (error) ->
+      if error
+        console.log(error)
+        throw new Meteor.Error("There was a problem logging in with Facebook.")
+
   'keyup input, click #submit': (e) ->
     $email = $('input#email')
     $password = $('input#password')

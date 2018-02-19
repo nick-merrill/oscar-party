@@ -13,7 +13,14 @@
     "initialAdminCredentials": {
       "email": "...@...",
       "password": "***"
-    }
+    },
+    "services": [
+      {
+        "service": "facebook",
+        "appId": "***",
+        "secret": "***"
+      }
+    ]
   },
   "public": {
     "partyName": "Oscar Party",

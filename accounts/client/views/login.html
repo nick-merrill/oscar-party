@@ -1,4 +1,7 @@
 <template name="login">
+  {{#if loggingIn}}
+    Logging you in...
+  {{else}}
   <p class='text-center'>
     If you don't have an account, this will be your new account email and password.
   </p>
@@ -23,5 +26,9 @@
         Login <i class="fa fa-chevron-circle-right"></i>
       </button>
     </div>
+    <div class='text-center margin'>
+      <button class='btn btn-info' id='fb-login'>Login with Facebook</button>
+    </div>
   </div>
+  {{/if}}
 </template>

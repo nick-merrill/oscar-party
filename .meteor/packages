@@ -25,3 +25,5 @@ standard-minifier-js
 shell-server
 dynamic-import
 babel-runtime
+service-configuration
+accounts-facebook

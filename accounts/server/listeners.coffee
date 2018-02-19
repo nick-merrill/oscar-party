@@ -1,9 +1,12 @@
 Accounts.onCreateUser (options, user) ->
   user.isApproved = false
-  Email.send
-    from: Meteor.settings.private.senderEmail
-    to: Meteor.settings.private.adminEmail
-    subject: "New Oscar User: #{user.emails[0].address}"
-    text: EJSON.stringify(user)
-  logUserAction(user, "Created an account.")
+  if user.services.facebook
+    user.emails = [{address: user.services.facebook.email}]
+    user.username = user.emails[0]
+    if !user.profile
+      user.profile = {}
+    user.profile.name = user.services.facebook.name
+    logUserAction(user, "Created an account with Facebook.")
+  else
+    logUserAction(user, "Created an account.")
   return user

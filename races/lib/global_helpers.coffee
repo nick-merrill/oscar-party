@@ -9,7 +9,7 @@
   date = moment()
   dateString = date.toDate().toString()
   if user?
-    console.log "#{dateString} - #{user.profile.name} (#{user._id}): #{msg}"
+    console.log "#{dateString} - #{user.profile && user.profile.name || user._id} (#{user._id}): #{msg}"
   else
     console.log "#{dateString} - #{msg}"
   UserActions.insert
