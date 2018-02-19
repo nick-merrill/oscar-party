@@ -29,3 +29,11 @@ table th, table td {
     -webkit-animation-iteration-count: 5;
     -moz-animation-iteration-count: 5;
 }
+
+#fb-login {
+    padding: 0.7em 1.5em;
+    background-color: #4267B2;
+    font-size: 1.15em;
+    margin: 0.3em;
+    border: none;
+}

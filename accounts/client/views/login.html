@@ -2,9 +2,13 @@
   {{#if loggingIn}}
     Logging you in...
   {{else}}
-  <p class='text-center'>
-    If you don't have an account, this will be your new account email and password.
-  </p>
+  <div class='text-center margin' style='margin-bottom: 2em;'>
+    <button class='btn btn-info' id='fb-login'>
+      <i class='fa fa-facebook-official'></i>
+      Continue with Facebook
+    </button>
+    <p>This is for your convenience. We won't post to Facebook, of course.</p>
+  </div>
   <div style="max-width: 300px; margin: 0 auto;">
     <div class="margin">
       <div class="input-group">
@@ -21,13 +25,13 @@
     <div class="text-center text-danger">
       {{$.Session.get 'loginErrorText'}}
     </div>
+    <p class='text-center'>
+      If you don't have an account, this will be your new account email and password.
+    </p>
     <div class="text-center margin">
-      <button id="submit" class="btn btn-info btn-lg">
+      <button id="submit" class="btn btn-default btn-lg">
         Login <i class="fa fa-chevron-circle-right"></i>
       </button>
-    </div>
-    <div class='text-center margin'>
-      <button class='btn btn-info' id='fb-login'>Login with Facebook</button>
     </div>
   </div>
   {{/if}}
