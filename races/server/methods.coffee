@@ -83,6 +83,23 @@ Meteor.methods
                 changeOfCorrectCountSinceLastWinner: 1
             }, {multi: true}
 
+      # Flash LIFX lights to celebrate!
+      if Meteor.settings.private.lifx?.apiKey
+        console.log("Attempting to flash LIFX lights")
+        lifxSettings = Meteor.settings.private.lifx
+        HTTP.post "https://api.lifx.com/v1/lights/#{lifxSettings.announcementSelector || 'all'}/effects/pulse",
+          headers:
+            Authorization: "Bearer #{lifxSettings.apiKey}"
+          params:
+            period: lifxSettings.announcementPeriod || 2
+            cycles: lifxSettings.announcementFlashCount || 5
+            color: lifxSettings.announcementColor || 'green'
+        , (error, result) ->
+          if error
+            console.log("Error flashing lights:", error)
+          else
+            console.log("Flashed lights result:", result)
+
     # Unset next-up race so that this winner will be displayed prominently.
     Meteor.call('setRaceUpNext', null)
 

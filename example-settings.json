@@ -20,7 +20,11 @@
         "appId": "***",
         "secret": "***"
       }
-    ]
+    ],
+    "lifx": {
+      "apiKey": "",
+      "announcementColor": ""
+    }
   },
   "public": {
     "partyName": "Oscar Party",

@@ -27,3 +27,4 @@ dynamic-import
 babel-runtime
 service-configuration
 accounts-facebook
+http
