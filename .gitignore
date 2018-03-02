@@ -7,7 +7,7 @@ build/
 client/lib/.sass-cache
 client/lib/.sass-cache/*
 
-settings*.json
+*settings*.json
 
 deploy.sh
 
