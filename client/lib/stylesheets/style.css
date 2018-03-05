@@ -8869,12 +8869,14 @@ button.close {
 /* line 14, ../sass/style.scss */
 body {
   margin: 10px;
-  background: url("/static/img/backgrounds/dark_fish_skin.png"), no-repeat top left;
+  /*background: url("/static/img/backgrounds/dark_fish_skin.png"), no-repeat top left;*/
+  background: #222222;
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
   /* line 14, ../sass/style.scss */
   body {
-    background: url("/static/img/backgrounds/dark_fish_skin_@2X.png"), no-repeat top left;
+    /*background: url("/static/img/backgrounds/dark_fish_skin_@2X.png"), no-repeat top left;*/
+    background: #222222;
   }
 }
 
